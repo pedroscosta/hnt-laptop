@@ -8,6 +8,7 @@ const apps: App[] = [
         name: 'Example',
         icon: FaRegEye,
         color: '#74F2CE',
+        iconColor: 'white',
         app: <ExampleApp />,
     }
 ]
