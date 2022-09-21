@@ -1,0 +1,67 @@
+.nui-wrapper {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  counter-reset:line-numbering;
+  background:#2c3e50;
+  padding:12px 0px 14px 0;
+  color:#ecf0f1;
+  line-height:140%;
+}
+
+div.laptop-frame {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 90%;
+  background-image: url(../assets/default-bg.jpg);
+  background-color: rgb(41, 41, 41);
+  border: 10px solid rgb(11, 13, 27);
+  border-bottom: 20px solid rgb(11, 13, 27);
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  transition: 1s;
+  z-index: -1;
+  /* animation: laptop_down forwards cubic-bezier(0.38, 0.09, 0.12, 0.93) 1s; */
+  opacity: 1;
+  animation: laptop_up forwards cubic-bezier(0.4, 0, 0.01, 1.17) 1s;
+}
+
+div.laptop-frame.active {
+  opacity: 1;
+  animation: laptop_up forwards cubic-bezier(0.4, 0, 0.01, 1.17) 1s;
+  /* bottom: -45%; */
+}
+
+@keyframes laptop_up {
+  from {
+    bottom: -150%;
+  }
+  to {
+    bottom: -45%;
+  }
+}
+
+@keyframes laptop_notification {
+  from {
+    bottom: -150%;
+  }
+  to {
+  }
+}
+
+@keyframes laptop_down {
+  from {
+    bottom: -45%;
+  }
+  to {
+    bottom: -150%;
+  }
+}
