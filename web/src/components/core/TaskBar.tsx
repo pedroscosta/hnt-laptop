@@ -16,25 +16,80 @@ import {
     useColorMode,
     Center,
     Image,
+    Square,
+    Icon,
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import logo from '../../assets/logo.png'
+import { Route, Routes } from 'react-router-dom'
+import { App } from '../../types'
 
-type Props = {}
+type Props = {
+    apps: App[]
+}
 
-const TaskBar = (props: Props) => {
+const TaskBar = ({ apps }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <Box bg="gray.900" px={0}>
             <Flex h={10} alignItems={'center'} justifyContent={'space-between'}>
                 <Flex alignItems={'center'}>
-                    <Stack direction={'row'} spacing={7} px={0}>
+                    <Stack direction={'row'} spacing={2} px={0}>
                         <Button
                             size={'sm'}
                             style={{ backgroundColor: 'transparent' }}
                         >
                             <Image w={8} src={logo} />
                         </Button>
+                        <Routes>
+                            {apps.map((app) => (
+                                // <Route
+                                //     path={app.id}
+                                //     element={
+                                //         <Square
+                                //             size={16}
+                                //             bg={app.color}
+                                //             borderRadius="md"
+                                //             shadow={'lg'}
+                                //             style={{ cursor: 'pointer' }}
+                                //         >
+                                //             <Center>
+                                //                 <Icon
+                                //                     as={app.icon}
+                                //                     boxSize={10}
+                                //                     color={
+                                //                         app.iconColor ?? 'white'
+                                //                     }
+                                //                 />
+                                //             </Center>
+                                //         </Square>
+                                //     }
+                                // />
+
+                                <Route
+                                    path={app.id}
+                                    element={
+                                        <Square
+                                            size={8}
+                                            bg={app.color}
+                                            borderRadius="md"
+                                            shadow={'lg'}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            <Center>
+                                                <Icon
+                                                    as={app.icon}
+                                                    boxSize={6}
+                                                    color={
+                                                        app.iconColor ?? 'white'
+                                                    }
+                                                />
+                                            </Center>
+                                        </Square>
+                                    }
+                                />
+                            ))}
+                        </Routes>
                     </Stack>
                 </Flex>
 

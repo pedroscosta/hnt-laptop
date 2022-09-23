@@ -1,5 +1,5 @@
 import ExampleApp from "./apps/ExampleApp";
-import { App } from "./types";
+import { App } from "../types";
 import { FaRegEye } from "react-icons/fa";
 
 const apps: App[] = [

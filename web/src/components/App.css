@@ -4,6 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 pre {
@@ -28,7 +33,6 @@ div.laptop-frame {
   background-position: center;
   opacity: 1;
   transition: 1s;
-  z-index: -1;
   /* animation: laptop_down forwards cubic-bezier(0.38, 0.09, 0.12, 0.93) 1s; */
   opacity: 1;
   animation: laptop_up forwards cubic-bezier(0.4, 0, 0.01, 1.17) 1s;
