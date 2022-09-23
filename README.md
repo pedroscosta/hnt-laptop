@@ -24,9 +24,9 @@ it within your `resources` folder.
 Install dependencies by navigating to the `web` folder within
 a terminal of your choice and type `yarn` or `npm i`.
 
-### Adding new aps
+## Adding New Apps
 
-To create a new app you must add the app to the `web/src/apps.tsx` file.
+To create a new app you must add the app to the `web/src/apps/config.tsx` file.
 
 Following this model:
 
@@ -41,7 +41,7 @@ Following this model:
 }
 ```
 
-### Building
+## Building and Developing
 
 **Hot Builds In-Game**
 
@@ -69,6 +69,17 @@ You can do this by running the following:
 yarn build 
 npm run build
 ```
+
+## Contributors and Credits
+
+**Contributors:**
+
+* [Pedro 'HunterFP' Costa](https://github.com/pedroscosta): Main developer and maintainer.
+  
+**Credits:**
+
+* [fivem-react-boilerplate-lua](https://github.com/project-error/fivem-react-boilerplate-lua): Boilerplate for React and Lua for FiveM.
+* [jl-carboost](https://github.com/JustLazzy/jl-carboost): Inspiration for the UI.
 
 
 
