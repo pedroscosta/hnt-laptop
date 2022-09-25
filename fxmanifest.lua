@@ -1,9 +1,9 @@
 fx_version "cerulean"
 
-description "Basic React (TypeScript) & Lua Game Scripts Boilerplate"
-author "Project Error"
+description "hnt-laptop"
+author "HunterFP"
 version '1.0.0'
-repository 'https://github.com/project-error/fivem-react-boilerplate-lua'
+repository 'https://github.com/pedroscosta/hnt-laptop'
 
 lua54 'yes'
 
@@ -16,6 +16,10 @@ ui_page 'web/build/index.html'
 
 client_script "client/**/*"
 server_script "server/**/*"
+
+shared_scripts {
+  'config.lua'
+}
 
 files {
   'web/build/index.html',
