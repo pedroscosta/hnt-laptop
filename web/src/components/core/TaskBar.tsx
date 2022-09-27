@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
     Box,
     Flex,
@@ -22,14 +22,18 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import logo from '../../assets/logo.png'
 import { Route, Routes } from 'react-router-dom'
-import { App } from '../../types'
+import { Apps } from '../../apps/config'
+import DesktopContext from '../../contexts/DesktopContext'
 
 type Props = {
-    apps: App[]
+    apps: Apps
 }
 
 const TaskBar = ({ apps }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const { openApps } = useContext(DesktopContext)
+
     return (
         <Box bg="gray.900" px={0}>
             <Flex h={10} alignItems={'center'} justifyContent={'space-between'}>
@@ -41,55 +45,23 @@ const TaskBar = ({ apps }: Props) => {
                         >
                             <Image w={8} src={logo} />
                         </Button>
-                        <Routes>
-                            {apps.map((app) => (
-                                // <Route
-                                //     path={app.id}
-                                //     element={
-                                //         <Square
-                                //             size={16}
-                                //             bg={app.color}
-                                //             borderRadius="md"
-                                //             shadow={'lg'}
-                                //             style={{ cursor: 'pointer' }}
-                                //         >
-                                //             <Center>
-                                //                 <Icon
-                                //                     as={app.icon}
-                                //                     boxSize={10}
-                                //                     color={
-                                //                         app.iconColor ?? 'white'
-                                //                     }
-                                //                 />
-                                //             </Center>
-                                //         </Square>
-                                //     }
-                                // />
-
-                                <Route
-                                    path={app.id}
-                                    element={
-                                        <Square
-                                            size={8}
-                                            bg={app.color}
-                                            borderRadius="md"
-                                            shadow={'lg'}
-                                            style={{ cursor: 'pointer' }}
-                                        >
-                                            <Center>
-                                                <Icon
-                                                    as={app.icon}
-                                                    boxSize={6}
-                                                    color={
-                                                        app.iconColor ?? 'white'
-                                                    }
-                                                />
-                                            </Center>
-                                        </Square>
-                                    }
-                                />
-                            ))}
-                        </Routes>
+                        {Object.entries(openApps).map(([id, app]) => (
+                            <Square
+                                size={8}
+                                bg={app.color}
+                                borderRadius="md"
+                                shadow={'lg'}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <Center>
+                                    <Icon
+                                        as={app.icon}
+                                        boxSize={6}
+                                        color={app.iconColor ?? 'white'}
+                                    />
+                                </Center>
+                            </Square>
+                        ))}
                     </Stack>
                 </Flex>
 

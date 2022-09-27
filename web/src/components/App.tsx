@@ -8,6 +8,7 @@ import Apps from '../apps/config'
 import { Box } from '@chakra-ui/react'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import AppFrame from './core/AppFrame'
+import { DesktopContextProvider } from '../contexts/DesktopContext'
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -56,30 +57,24 @@ const App: React.FC = () => {
     }
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route
-                    path="/*"
-                    element={
-                        <div className="nui-wrapper">
-                            <div className="laptop-frame">
-                                <Box flex={'1 1 auto'} position={'relative'}>
-                                    <Desktop apps={Apps} />
-                                </Box>
-                                <TaskBar apps={Apps} />
-                            </div>
-                        </div>
-                    }
-                >
-                    {Apps.map((app) => (
+        <>
+            <DesktopContextProvider>
+                <div className="nui-wrapper">
+                    <div className="laptop-frame">
+                        <Box flex={'1 1 auto'} position={'relative'}>
+                            <Desktop apps={Apps} />
+                        </Box>
+                        <TaskBar apps={Apps} />
+                    </div>
+                </div>
+                {/* {Apps.map((app) => (
                         <Route
                             path={app.id}
                             element={<AppFrame>{app.app}</AppFrame>}
                         />
-                    ))}
-                </Route>
-            </Routes>
-        </BrowserRouter>
+                    ))} */}
+            </DesktopContextProvider>
+        </>
     )
 }
 

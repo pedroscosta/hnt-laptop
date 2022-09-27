@@ -8,32 +8,33 @@ import {
     Icon,
     IconButton,
 } from '@chakra-ui/react'
-import React, { ReactNode } from 'react'
-import { BrowserRouter, Outlet, Route, Routes, useNavigate } from 'react-router-dom'
+import React, { ReactNode, useContext } from 'react'
+import { Apps } from '../../apps/config'
+import DesktopContext from '../../contexts/DesktopContext'
 import { App } from '../../types'
 import AppFrame from './AppFrame'
 
 interface Props {
     children?: ReactNode
-    apps: App[]
+    apps: Apps
 }
 
 const Desktop = ({ children, apps }: Props) => {
-    const navigate = useNavigate();
+    const { openApp } = useContext(DesktopContext)
     return (
         <>
             <div style={{ flex: '1 1 auto' }}>
                 <Box padding={4} w={64}>
                     <SimpleGrid columns={3} spacing={4} spacingY={8}>
-                        {apps.map((app) => (
+                        {Object.entries(apps).map(([appId, app]) => (
                             <Flex flexDirection={'column'} align={'center'}>
                                 <Square
                                     size={16}
                                     bg={app.color}
                                     borderRadius="md"
                                     shadow={'lg'}
-                                    style={{cursor: 'pointer'}}
-                                    onClick={() => navigate(app.id)}
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => openApp(appId)}
                                 >
                                     <Center>
                                         <Icon
@@ -57,7 +58,6 @@ const Desktop = ({ children, apps }: Props) => {
                     </SimpleGrid>
                 </Box>
             </div>
-            <Outlet />
         </>
     )
 }
