@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useContext } from 'react'
 import {
     background,
     Box,
@@ -9,16 +9,19 @@ import {
     Text,
 } from '@chakra-ui/react'
 import { MdClose } from 'react-icons/md'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 import './AppFrame.css'
+import DesktopContext from '../../contexts/DesktopContext'
 
 type Props = {
     children?: ReactNode
+    appId: string
 }
 
-const AppFrame = ({ children }: Props) => {
-    const navigate = useNavigate();
+const AppFrame = ({ children, appId }: Props) => {
+    const { closeApp } = useContext(DesktopContext)
+
     return (
         <Box className="app-frame">
             <Flex paddingBottom={1} paddingRight={1}>
@@ -31,12 +34,12 @@ const AppFrame = ({ children }: Props) => {
                     colorScheme="red"
                     size="2xs"
                     icon={<MdClose />}
-                    onClick={() => navigate('/')}
+                    onClick={() => {
+                        closeApp(appId)
+                    }}
                 />
             </Flex>
-            <div style={{ flex: '1 1 auto'}}>
-                {children}
-            </div>
+            <div style={{ flex: '1 1 auto' }}>{children}</div>
         </Box>
     )
 }

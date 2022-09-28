@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './App.css'
 import { debugData } from '../utils/debugData'
 import { fetchNui } from '../utils/fetchNui'
@@ -8,7 +8,7 @@ import Apps from '../apps/config'
 import { Box } from '@chakra-ui/react'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import AppFrame from './core/AppFrame'
-import { DesktopContextProvider } from '../contexts/DesktopContext'
+import DesktopContext, { DesktopContextProvider } from '../contexts/DesktopContext'
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -67,12 +67,6 @@ const App: React.FC = () => {
                         <TaskBar apps={Apps} />
                     </div>
                 </div>
-                {/* {Apps.map((app) => (
-                        <Route
-                            path={app.id}
-                            element={<AppFrame>{app.app}</AppFrame>}
-                        />
-                    ))} */}
             </DesktopContextProvider>
         </>
     )
